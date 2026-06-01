@@ -1,184 +1,142 @@
 # StackPilot AI
 
-语言：中文 | [English](./README.en.md)
+> 面向 AI 应用开发的技术栈选型智能体：输入项目背景、约束和候选方案，自动完成资料检索、评估维度拆解、对比矩阵生成与技术选型报告输出。
 
-StackPilot AI 是一个面向 AI 应用开发场景的技术栈选型智能体。它帮助个人开发者和小型工程团队，把模糊的技术决策问题转化为结构化、可追溯、可讨论的选型报告，包含候选方案对比、方案取舍、风险提示和来源引用。
+[English](./README.en.md) · [项目进度文档](./PROJECT_PROGRESS.md)
 
-> 当前状态：MVP / 作品集项目。项目基于 HelloAgents 深度研究示例进行二次改造，核心方向从“通用深度研究”升级为“AI 技术栈选型决策工作流”。
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi&logoColor=white)
+![Vue](https://img.shields.io/badge/Vue%203-Frontend-42B883?logo=vuedotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-UI-3178C6?logo=typescript&logoColor=white)
+![SSE](https://img.shields.io/badge/Streaming-SSE-f59e0b)
 
-## 这是给谁用的？
+## 项目简介
 
-- 准备开发 AI 应用、RAG 系统、Agent 产品或智能工作流的个人开发者。
-- 需要在多个技术方案之间做取舍的小型工程团队。
-- 希望展示 AI 应用工程能力、工作流编排能力和前后端交付能力的求职者。
+StackPilot AI 是一个用于辅助 AI 应用技术栈选型的智能体工作台。它面向 RAG、Agent、AI SaaS、企业知识库、智能工作流等开发场景，将“该选哪套技术方案”这类模糊问题，转化为结构化、可追溯、可讨论的技术决策报告。
 
-## 解决什么问题？
+传统技术选型往往依赖碎片化搜索、个人经验和零散笔记。StackPilot AI 将选型流程拆成可执行的智能体工作流：理解项目背景、识别候选方案、规划评估维度、联网检索资料、生成对比矩阵、输出推荐结论与风险提示。它不是替代架构师做最终决策，而是帮助团队更快得到一份有证据、有边界、有讨论价值的选型初稿。
 
-技术选型经常不是“哪个技术最好”的问题，而是“哪个技术在当前约束下最合适”的问题。真实决策会受到团队经验、上线周期、部署方式、预算、生态成熟度、运维成本和后续扩展需求影响。
+## 适用场景
 
-StackPilot AI 解决的是技术选型前期调研低效、信息分散、结论不可追溯的问题。
+- 个人开发者准备启动 AI 应用，希望快速比较模型服务、向量数据库、Agent 框架、部署方案等技术路线。
+- 小型团队需要在上线周期、预算、人力、部署环境和维护成本之间做现实取舍。
+- 技术负责人希望把技术调研过程沉淀为可复盘的 ADR 或项目决策文档。
+- 求职作品集需要展示完整的 AI 应用工程能力，包括智能体编排、联网检索、流式输出、前后端集成和工程部署。
 
-它可以辅助回答：
+## 核心能力
 
-- 中小型 RAG SaaS 项目应该选 pgvector、Milvus、Weaviate 还是 Pinecone？
-- Agent 框架应该选 LangChain、LlamaIndex、Dify、AutoGen 还是自研编排？
-- 模型接入方案应该选 OpenAI 兼容 API、Ollama、vLLM 还是托管模型服务？
-- 在团队规模、预算、部署方式和上线周期约束下，哪个技术栈更现实？
+| 能力 | 解决的问题 |
+| --- | --- |
+| 结构化需求输入 | 收集项目类型、团队规模、预算、部署方式、上线周期、已有技术栈等上下文，减少泛泛而谈的回答。 |
+| 候选方案发现 | 用户可以手动输入候选技术，也可以让系统根据主题自动补全候选方案。 |
+| 评估维度拆解 | 自动生成适合当前项目的评估维度，例如开发效率、生态成熟度、AI 集成能力、成本、运维复杂度和风险。 |
+| 联网资料检索 | 基于搜索工具获取候选技术资料，为报告提供来源引用，降低纯模型生成的幻觉风险。 |
+| 对比矩阵生成 | 将候选方案按维度横向比较，帮助用户快速看清方案差异。 |
+| 推荐与风险提示 | 输出主推荐、备选方案、适用边界、关键风险和待确认问题。 |
+| 报告导出 | 将技术选型结果导出为 Markdown，便于进入项目文档、Wiki、PR 或 ADR 流程。 |
 
-StackPilot AI 不承诺给出绝对正确的最终答案。它的价值是生成一份结构化、可验证、可继续讨论的技术决策初稿。
-
-## Demo、视频和截图
-
-线上 Demo：
-
-- Demo 地址：`TODO: 添加前端部署地址`
-- API 地址：`TODO: 添加后端部署地址`
-
-演示视频：
-
-- 视频地址：`TODO: 添加 Bilibili / YouTube / Loom 链接`
-
-核心截图：
-
-- 初始全屏输入页：`TODO: docs/assets/stackpilot-intake.png`
-- 实时选型执行过程：`TODO: docs/assets/stackpilot-progress.png`
-- 对比矩阵与报告页：`TODO: docs/assets/stackpilot-report.png`
-
-建议截图内容：
-
-- 展示开始分析前的全屏结构化输入表单。
-- 展示开始分析后的左侧配置栏和右侧实时进度。
-- 展示候选方案对比矩阵、渲染后的技术选型报告和来源引用。
-
-## 主要功能
-
-### 结构化决策输入
-
-收集选型主题、项目类型、团队规模、上线时间、预算水平、部署方式、偏好语言、已有技术栈、特殊要求和候选方案。
-
-解决的问题：避免因为上下文不足导致模型给出泛泛而谈的建议。
-
-### 候选方案发现
-
-如果用户提供候选方案，系统会直接标准化处理；如果候选方案为空，系统会根据选型主题自动推荐一组候选技术。
-
-解决的问题：用户既可以从明确候选列表开始，也可以从模糊问题开始。
-
-### 评估维度拆解
-
-将技术选型拆解为开发效率、AI 集成友好度、生态成熟度、部署与运维复杂度、成本与风险等维度。
-
-解决的问题：避免技术选型只比较热度或单一指标。
-
-### 联网检索与证据收集
-
-基于 HelloAgents `SearchTool` 调用可配置搜索后端，包括 DuckDuckGo、Tavily、Perplexity、Searxng 或高级混合搜索。
-
-解决的问题：让选型报告具备外部资料引用，而不是只依赖模型记忆。
-
-### 候选方案评估
-
-针对每个候选技术和每个评估维度，生成摘要、优势、不足、风险、来源链接和粗粒度评级。
-
-解决的问题：把分散资料转化成可比较的决策单元。
-
-### 对比矩阵
-
-将评估结果整理成“维度 x 候选方案”的矩阵。
-
-解决的问题：用户可以快速横向比较不同技术方案的取舍。
-
-### 技术选型报告
-
-生成包含背景约束、矩阵解读、推荐方案、备选方案、风险边界、待确认问题和来源引用的报告。
-
-解决的问题：输出可以作为技术决策备忘录，或作为 ADR（Architecture Decision Record）的初稿。
-
-### Markdown 导出
-
-支持将报告导出为 Markdown 文件。
-
-解决的问题：便于沉淀到 GitHub、项目文档、团队 Wiki 或作品集说明中。
-
-## 系统架构
+## 工作流
 
 ```text
-Vue 3 前端
-  -> POST /decision/stream
-  -> FastAPI 后端
-  -> TechSelectionAgent
-     -> 候选方案发现
-     -> 评估维度规划
-     -> SearchTool 联网检索
-     -> LLM 候选评估
-     -> 对比矩阵构建
-     -> 报告生成与导出
-  -> SSE 流式事件
-  -> 实时进度、对比矩阵、渲染报告、来源引用
+用户输入项目背景、约束和候选方案
+        ↓
+TechSelectionAgent 拆解选型任务
+        ↓
+候选方案发现 + 评估维度规划
+        ↓
+联网检索候选技术资料
+        ↓
+按维度评估候选方案
+        ↓
+生成对比矩阵、推荐结论、风险提示和来源引用
+        ↓
+前端实时展示进度并渲染技术选型报告
 ```
 
-## 技术选型与方案取舍
+## 技术架构
 
-### Vue 3 + TypeScript + Vite
+```text
+frontend/
+  Vue 3 + TypeScript + Vite
+  - 全屏选型输入页
+  - SSE 实时进度展示
+  - 对比矩阵与报告渲染
 
-选择原因：前端轻量、启动快、工程体验好，适合快速构建交互型 AI 工具。
+backend/
+  FastAPI + HelloAgents
+  - /decision/stream 流式选型接口
+  - TechSelectionAgent 业务智能体
+  - SearchTool 联网检索
+  - 报告导出与结果结构化
+```
 
-方案取舍：当前 MVP 为了快速交付，主要界面集中在 `App.vue`。后续生产化版本应拆分为表单、进度、矩阵、报告和来源组件。
+后端核心调用链：
 
-### FastAPI + Uvicorn
+```text
+FastAPI /decision/stream
+  -> TechSelectionAgent.run()
+  -> CandidateDiscoveryService
+  -> DimensionPlannerService
+  -> SearchTool
+  -> MatrixBuilderService
+  -> ReportExporter
+  -> SSE events
+```
 
-选择原因：Python 生态适合 AI 应用开发，FastAPI 对类型建模、接口开发和流式响应支持较好。
+## 技术选型说明
 
-方案取舍：当前选型流程运行在一次 HTTP 流式请求中。生产化版本应引入后台任务队列或异步任务系统。
+| 模块 | 技术 | 选择原因 |
+| --- | --- | --- |
+| 前端 | Vue 3 + TypeScript + Vite | 轻量、启动快、适合快速构建交互型 AI 工作台。 |
+| 后端 | FastAPI + Uvicorn | Python AI 生态友好，类型建模和流式响应实现清晰。 |
+| 智能体 | HelloAgents + 自定义 TechSelectionAgent | 复用 LLM、工具调用和搜索能力，同时将业务流程聚焦到技术选型。 |
+| 实时通信 | Server-Sent Events | 选型任务是单向长流程，SSE 比 WebSocket 更简单、更适合实时进度推送。 |
+| 检索增强 | DuckDuckGo / Tavily / Perplexity / Searxng | 通过外部资料增强报告可信度，并保留可配置搜索后端。 |
+| 报告格式 | Markdown | 易于保存到 GitHub、Wiki、PR、ADR 和作品集文档。 |
 
-### SSE 流式响应
+## 快速开始
 
-选择原因：技术选型是长耗时工作流，用户需要实时看到进度。
-
-方案取舍：SSE 比 WebSocket 更简单，适合单向进度推送；如果后续做多人协作或交互式追问，可以升级为 WebSocket。
-
-### HelloAgents
-
-选择原因：复用 HelloAgents 的 LLM 封装、工具调用、搜索工具和智能体工作流能力。
-
-方案取舍：项目保留 HelloAgents 能力，同时新增 `TechSelectionAgent`，让业务流程更清晰地面向技术选型场景。
-
-### 搜索增强评估
-
-选择原因：技术选型需要引用外部资料，降低纯模型生成带来的幻觉风险。
-
-方案取舍：搜索质量依赖后端和 API Key。演示场景推荐使用 Tavily；DuckDuckGo 使用方便，但稳定性可能较弱。
-
-### 轻量 Markdown 渲染
-
-选择原因：MVP 阶段避免引入额外前端依赖。
-
-方案取舍：当前本地渲染器支持标题、列表、链接、加粗和表格，但不是完整 Markdown 解析器。生产版本建议接入成熟 Markdown 渲染库并加入安全清洗。
-
-## 本地运行
-
-### 环境要求
-
-- Python 3.10+
-- Node.js 16+
-- npm 8+
-- 可用的 OpenAI 兼容 LLM 接口、Ollama 或 LMStudio
-- 可选：Tavily / Perplexity / Searxng，用于更稳定的联网检索
-
-### 后端启动
+### 1. 启动后端
 
 ```powershell
-cd E:\agentProjects\hello-agents\code\chapter14\helloagents-deepresearch\backend
+cd backend
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install -e .
 Copy-Item .env.example .env
+python src\main.py
 ```
 
-编辑 `backend/.env`。
+后端默认运行在：
 
-OpenAI 兼容接口示例：
+```text
+http://localhost:8000
+```
+
+健康检查：
+
+```text
+GET http://localhost:8000/healthz
+```
+
+### 2. 启动前端
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+前端默认运行在：
+
+```text
+http://localhost:5174
+```
+
+### 3. 配置环境变量
+
+后端配置文件位于 `backend/.env`。OpenAI 兼容接口示例：
 
 ```env
 SEARCH_API=duckduckgo
@@ -215,98 +173,11 @@ ENABLE_NOTES=True
 NOTES_WORKSPACE=./notes
 ```
 
-启动后端：
-
-```powershell
-python src\main.py
-```
-
-健康检查：
-
-```text
-http://localhost:8000/healthz
-```
-
-主接口：
-
-```text
-POST http://localhost:8000/decision/stream
-```
-
-兼容保留的旧接口：
-
-```text
-POST http://localhost:8000/research/stream
-```
-
-### 前端启动
-
-```powershell
-cd E:\agentProjects\hello-agents\code\chapter14\helloagents-deepresearch\frontend
-npm install
-npm run dev
-```
-
-访问：
-
-```text
-http://localhost:5174
-```
-
-可选前端环境变量：
+前端可选配置：
 
 ```env
 VITE_API_BASE_URL=http://localhost:8000
 ```
-
-## 验证命令
-
-后端语法检查：
-
-```powershell
-cd E:\agentProjects\hello-agents\code\chapter14\helloagents-deepresearch\backend
-.\.venv\Scripts\python.exe -m py_compile src\models.py src\main.py src\tech_selection_agent.py src\services\candidate_discovery.py src\services\dimension_planner.py src\services\matrix_builder.py src\services\exporter.py src\services\search.py
-```
-
-前端构建：
-
-```powershell
-cd E:\agentProjects\hello-agents\code\chapter14\helloagents-deepresearch\frontend
-npm run build
-```
-
-## 关键 PR
-
-当前项目仍处于本地 MVP 阶段，推送到 GitHub 后建议补充以下 PR 链接：
-
-- PR 1：`TODO: Introduce StackPilot AI decision workflow`
-- PR 2：`TODO: Rebuild frontend as technology selection workspace`
-- PR 3：`TODO: Add Docker deployment and public demo`
-- PR 4：`TODO: Add report history and persistence`
-
-## 当前限制
-
-- 决策工作流运行在一次 HTTP 流式请求中，尚未引入后台任务队列。
-- 暂无用户系统、团队空间和权限模型。
-- 暂无数据库持久化历史记录，报告目前以 Markdown 导出为主。
-- 搜索质量依赖配置的搜索后端和网络状态。
-- 评级是粗粒度标签，不是严格统计评分。
-- Markdown 渲染器是轻量实现，不是完整 Markdown 引擎。
-- 尚未加入自动化浏览器视觉回归测试。
-- README 中的 Demo 地址、演示视频和截图仍待补充。
-
-## 后续计划
-
-- 增加 Docker Compose 部署。
-- 部署公开 Demo，并补充截图和演示视频。
-- 增加选型历史记录和报告归档。
-- 将前端拆分为独立组件。
-- 增加来源可信度标签，例如官方文档、GitHub、技术博客、社区讨论、Benchmark。
-- 增加 ADR 导出格式。
-- 引入后台任务执行，支持长耗时选型任务恢复。
-- 增加重试、超时和部分结果返回机制。
-- 增加 Playwright 桌面端和移动端 UI 检查。
-- 增加 GitHub Actions 构建与检查流程。
 
 ## 项目结构
 
@@ -314,22 +185,86 @@ npm run build
 helloagents-deepresearch/
 ├── backend/
 │   ├── src/
-│   │   ├── main.py
-│   │   ├── tech_selection_agent.py
-│   │   ├── agent.py
-│   │   ├── models.py
+│   │   ├── main.py                    # FastAPI 入口与流式接口
+│   │   ├── tech_selection_agent.py    # 技术选型智能体主流程
+│   │   ├── models.py                  # 请求、事件和报告数据模型
 │   │   └── services/
-│   │       ├── candidate_discovery.py
-│   │       ├── dimension_planner.py
-│   │       ├── matrix_builder.py
-│   │       ├── exporter.py
-│   │       └── search.py
-│   ├── pyproject.toml
-│   └── .env.example
-└── frontend/
-    ├── src/
-    │   ├── App.vue
-    │   └── services/api.ts
-    ├── package.json
-    └── vite.config.ts
+│   │       ├── candidate_discovery.py # 候选方案发现
+│   │       ├── dimension_planner.py   # 评估维度规划
+│   │       ├── matrix_builder.py      # 对比矩阵生成
+│   │       ├── exporter.py            # 报告导出
+│   │       └── search.py              # 联网检索封装
+│   └── pyproject.toml
+├── frontend/
+│   ├── src/
+│   │   ├── App.vue                    # 主页面与报告渲染
+│   │   └── services/api.ts            # SSE 接口调用
+│   └── package.json
+├── README.md                          # 对外项目介绍
+├── README.en.md                       # 英文说明
+└── PROJECT_PROGRESS.md                # 项目进度与内部备忘录
 ```
+
+## 截图与演示
+
+当前仓库预留以下展示位，适合在部署后补充到 GitHub 首页：
+
+| 类型 | 链接 |
+| --- | --- |
+| 在线 Demo | TODO |
+| 演示视频 | TODO |
+| 初始输入页截图 | TODO |
+| 实时进度截图 | TODO |
+| 技术选型报告截图 | TODO |
+
+## 验证命令
+
+后端语法检查：
+
+```powershell
+cd backend
+.\.venv\Scripts\python.exe -m py_compile src\models.py src\main.py src\tech_selection_agent.py src\services\candidate_discovery.py src\services\dimension_planner.py src\services\matrix_builder.py src\services\exporter.py src\services\search.py
+```
+
+前端构建：
+
+```powershell
+cd frontend
+npm run build
+```
+
+## 当前状态
+
+项目处于 MVP 阶段，已完成从通用深度研究示例到 AI 技术栈选型智能体的核心改造：
+
+- 已支持结构化选型输入、候选方案发现、评估维度规划、联网检索、对比矩阵和报告生成。
+- 已支持 SSE 实时进度事件，前端可边执行边展示当前阶段。
+- 已重构主页面体验，初始页全屏展示，分析开始后切换为侧栏配置 + 右侧报告工作台。
+- 已支持将技术选型报告直接渲染到页面，并保留 Markdown 导出能力。
+
+## Roadmap
+
+- 增加 Docker Compose 一键部署。
+- 部署公开 Demo，补充截图和演示视频。
+- 增加报告历史记录、项目空间和持久化存储。
+- 支持 ADR、PDF、HTML 等更多报告导出格式。
+- 引入来源可信度标签，例如官方文档、GitHub、Benchmark、社区讨论和技术博客。
+- 增加后台任务队列，支持长耗时任务恢复、重试和部分结果返回。
+- 拆分前端组件，补充 Playwright UI 测试和 GitHub Actions。
+- 支持企业内部知识库和私有技术标准作为选型约束。
+
+## 项目来源
+
+本项目基于 HelloAgents 深度研究示例进行二次开发，核心目标从“通用主题研究”调整为“AI 应用技术栈选型”。改造重点包括业务智能体流程、结构化数据模型、联网评估链路、实时进度展示和面向作品集/企业实践的前端体验。
+
+## 当前限制
+
+- 选型结果用于辅助决策，不应替代真实架构评审、PoC 压测和安全合规审查。
+- 搜索质量依赖所配置的搜索后端、网络环境和 API Key。
+- 当前报告评分为粗粒度评价，不是严格量化 Benchmark。
+- MVP 尚未加入数据库、用户系统、团队协作和权限模型。
+- Markdown 渲染为轻量实现，生产环境建议引入成熟渲染器并做安全清洗。
+
+## License
+
+当前仓库尚未声明开源许可证。如需对外开放复用，建议补充 `LICENSE` 文件。
