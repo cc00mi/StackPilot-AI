@@ -1,167 +1,171 @@
 # StackPilot AI
 
-StackPilot AI is an AI application technology stack selection assistant. It helps developers and small engineering teams turn a vague technical decision into a structured, evidence-backed selection report with candidate comparison, trade-off analysis, risks, and references.
+语言：中文 | [English](./README.en.md)
 
-> Current status: MVP / portfolio project. The project is adapted from the HelloAgents deep research demo and rebuilt around AI technology stack decision workflows.
+StackPilot AI 是一个面向 AI 应用开发场景的技术栈选型智能体。它帮助个人开发者和小型工程团队，把模糊的技术决策问题转化为结构化、可追溯、可讨论的选型报告，包含候选方案对比、方案取舍、风险提示和来源引用。
 
-## Who It Is For
+> 当前状态：MVP / 作品集项目。项目基于 HelloAgents 深度研究示例进行二次改造，核心方向从“通用深度研究”升级为“AI 技术栈选型决策工作流”。
 
-- Individual developers who need to choose a practical AI application stack before building a product.
-- Small engineering teams evaluating RAG, Agent, vector database, model serving, or deployment options.
-- Job-seeking developers who want a realistic AI application project that demonstrates workflow orchestration, search-augmented reasoning, streaming UX, and engineering trade-offs.
+## 这是给谁用的？
 
-## Problem It Solves
+- 准备开发 AI 应用、RAG 系统、Agent 产品或智能工作流的个人开发者。
+- 需要在多个技术方案之间做取舍的小型工程团队。
+- 希望展示 AI 应用工程能力、工作流编排能力和前后端交付能力的求职者。
 
-Technology selection is often messy: information is scattered across official docs, GitHub issues, blogs, benchmarks, and personal experience. StackPilot AI structures that process.
+## 解决什么问题？
 
-It helps answer questions like:
+技术选型经常不是“哪个技术最好”的问题，而是“哪个技术在当前约束下最合适”的问题。真实决策会受到团队经验、上线周期、部署方式、预算、生态成熟度、运维成本和后续扩展需求影响。
 
-- Which vector database should we use for a small RAG SaaS product?
-- Should we choose LangChain, LlamaIndex, Dify, or a custom orchestration layer?
-- Should our AI service use API models, Ollama, vLLM, or managed model hosting?
-- Which stack is most realistic given team size, budget, deployment constraints, and timeline?
+StackPilot AI 解决的是技术选型前期调研低效、信息分散、结论不可追溯的问题。
 
-The tool does not claim to produce a perfect final answer. Its value is to generate a first decision draft that is structured, inspectable, and easy to challenge.
+它可以辅助回答：
 
-## Demo, Video, And Screenshots
+- 中小型 RAG SaaS 项目应该选 pgvector、Milvus、Weaviate 还是 Pinecone？
+- Agent 框架应该选 LangChain、LlamaIndex、Dify、AutoGen 还是自研编排？
+- 模型接入方案应该选 OpenAI 兼容 API、Ollama、vLLM 还是托管模型服务？
+- 在团队规模、预算、部署方式和上线周期约束下，哪个技术栈更现实？
 
-Public demo:
+StackPilot AI 不承诺给出绝对正确的最终答案。它的价值是生成一份结构化、可验证、可继续讨论的技术决策初稿。
 
-- Demo URL: `TODO: add deployed frontend URL`
-- API URL: `TODO: add deployed backend URL`
+## Demo、视频和截图
 
-Demo video:
+线上 Demo：
 
-- Video: `TODO: add Bilibili / YouTube / Loom link`
+- Demo 地址：`TODO: 添加前端部署地址`
+- API 地址：`TODO: 添加后端部署地址`
 
-Core screenshots:
+演示视频：
 
-- Initial full-screen intake page: `TODO: docs/assets/stackpilot-intake.png`
-- Live decision workflow: `TODO: docs/assets/stackpilot-progress.png`
-- Comparison matrix and rendered report: `TODO: docs/assets/stackpilot-report.png`
+- 视频地址：`TODO: 添加 Bilibili / YouTube / Loom 链接`
 
-Recommended screenshot checklist:
+核心截图：
 
-- Show the full-screen input form before analysis starts.
-- Show the left-side compact form and right-side live progress after analysis starts.
-- Show the comparison matrix, rendered report, and source references.
+- 初始全屏输入页：`TODO: docs/assets/stackpilot-intake.png`
+- 实时选型执行过程：`TODO: docs/assets/stackpilot-progress.png`
+- 对比矩阵与报告页：`TODO: docs/assets/stackpilot-report.png`
 
-## Main Features
+建议截图内容：
 
-### Structured Decision Intake
+- 展示开始分析前的全屏结构化输入表单。
+- 展示开始分析后的左侧配置栏和右侧实时进度。
+- 展示候选方案对比矩阵、渲染后的技术选型报告和来源引用。
 
-Collects project background, team size, delivery timeline, budget level, deployment mode, preferred language, existing stack, special requirements, and candidate technologies.
+## 主要功能
 
-Problem solved: avoids shallow recommendations caused by missing context.
+### 结构化决策输入
 
-### Candidate Discovery
+收集选型主题、项目类型、团队规模、上线时间、预算水平、部署方式、偏好语言、已有技术栈、特殊要求和候选方案。
 
-If users provide candidates, StackPilot AI normalizes them. If the candidate list is empty, it suggests a small set of likely technologies based on the decision topic.
+解决的问题：避免因为上下文不足导致模型给出泛泛而谈的建议。
 
-Problem solved: users can start from either a concrete shortlist or a vague selection question.
+### 候选方案发现
 
-### Evaluation Dimension Planning
+如果用户提供候选方案，系统会直接标准化处理；如果候选方案为空，系统会根据选型主题自动推荐一组候选技术。
 
-Breaks the decision into practical dimensions such as development efficiency, AI integration fit, ecosystem maturity, deployment complexity, and cost/risk.
+解决的问题：用户既可以从明确候选列表开始，也可以从模糊问题开始。
 
-Problem solved: prevents technology selection from becoming a one-dimensional popularity comparison.
+### 评估维度拆解
 
-### Web Research And Evidence Collection
+将技术选型拆解为开发效率、AI 集成友好度、生态成熟度、部署与运维复杂度、成本与风险等维度。
 
-Uses HelloAgents `SearchTool` with configurable search backends such as DuckDuckGo, Tavily, Perplexity, Searxng, or advanced hybrid search.
+解决的问题：避免技术选型只比较热度或单一指标。
 
-Problem solved: selection reports can cite external sources instead of relying only on model memory.
+### 联网检索与证据收集
 
-### Candidate Evaluation
+基于 HelloAgents `SearchTool` 调用可配置搜索后端，包括 DuckDuckGo、Tavily、Perplexity、Searxng 或高级混合搜索。
 
-Evaluates every candidate under every dimension and produces summaries, pros, cons, risks, source URLs, and a coarse rating.
+解决的问题：让选型报告具备外部资料引用，而不是只依赖模型记忆。
 
-Problem solved: turns scattered research into comparable decision units.
+### 候选方案评估
 
-### Comparison Matrix
+针对每个候选技术和每个评估维度，生成摘要、优势、不足、风险、来源链接和粗粒度评级。
 
-Builds a matrix where rows are evaluation dimensions and columns are candidate technologies.
+解决的问题：把分散资料转化成可比较的决策单元。
 
-Problem solved: users can quickly scan trade-offs across multiple candidates.
+### 对比矩阵
 
-### Rendered Decision Report
+将评估结果整理成“维度 x 候选方案”的矩阵。
 
-Generates a technology selection report with background, comparison interpretation, recommendation, alternatives, risks, open questions, and references.
+解决的问题：用户可以快速横向比较不同技术方案的取舍。
 
-Problem solved: outputs can be used as a decision memo or the first draft of an Architecture Decision Record.
+### 技术选型报告
 
-### Markdown Export
+生成包含背景约束、矩阵解读、推荐方案、备选方案、风险边界、待确认问题和来源引用的报告。
 
-Allows users to export the generated report as Markdown.
+解决的问题：输出可以作为技术决策备忘录，或作为 ADR（Architecture Decision Record）的初稿。
 
-Problem solved: makes the result portable for GitHub, project docs, internal wikis, and resume demos.
+### Markdown 导出
 
-## Architecture
+支持将报告导出为 Markdown 文件。
+
+解决的问题：便于沉淀到 GitHub、项目文档、团队 Wiki 或作品集说明中。
+
+## 系统架构
 
 ```text
-frontend Vue 3 app
+Vue 3 前端
   -> POST /decision/stream
-  -> FastAPI backend
+  -> FastAPI 后端
   -> TechSelectionAgent
-     -> candidate discovery
-     -> dimension planning
-     -> SearchTool web retrieval
-     -> LLM evaluation
-     -> comparison matrix builder
-     -> report exporter
-  -> SSE events
-  -> live progress, matrix, rendered report, references
+     -> 候选方案发现
+     -> 评估维度规划
+     -> SearchTool 联网检索
+     -> LLM 候选评估
+     -> 对比矩阵构建
+     -> 报告生成与导出
+  -> SSE 流式事件
+  -> 实时进度、对比矩阵、渲染报告、来源引用
 ```
 
-## Technical Choices And Trade-Offs
+## 技术选型与方案取舍
 
 ### Vue 3 + TypeScript + Vite
 
-Chosen for a lightweight, fast frontend stack with good developer experience and simple deployment as static assets.
+选择原因：前端轻量、启动快、工程体验好，适合快速构建交互型 AI 工具。
 
-Trade-off: the current MVP keeps the UI in a single `App.vue` to move quickly. A production version should split it into form, progress, matrix, report, and references components.
+方案取舍：当前 MVP 为了快速交付，主要界面集中在 `App.vue`。后续生产化版本应拆分为表单、进度、矩阵、报告和来源组件。
 
 ### FastAPI + Uvicorn
 
-Chosen for a clean Python API layer, strong typing via Pydantic, and simple streaming response support.
+选择原因：Python 生态适合 AI 应用开发，FastAPI 对类型建模、接口开发和流式响应支持较好。
 
-Trade-off: the current workflow is synchronous inside the request lifecycle. A production version should move long-running jobs to a task queue or background worker.
+方案取舍：当前选型流程运行在一次 HTTP 流式请求中。生产化版本应引入后台任务队列或异步任务系统。
 
-### SSE Streaming
+### SSE 流式响应
 
-Chosen because technology selection is a long-running workflow and users need visible progress.
+选择原因：技术选型是长耗时工作流，用户需要实时看到进度。
 
-Trade-off: SSE is simpler than WebSocket for one-way progress updates, but less suitable for complex bidirectional collaboration.
+方案取舍：SSE 比 WebSocket 更简单，适合单向进度推送；如果后续做多人协作或交互式追问，可以升级为 WebSocket。
 
 ### HelloAgents
 
-Chosen to reuse LLM orchestration, tool-aware agents, search tools, and note tooling from the HelloAgents ecosystem.
+选择原因：复用 HelloAgents 的 LLM 封装、工具调用、搜索工具和智能体工作流能力。
 
-Trade-off: this project inherits some framework conventions and provider requirements. The MVP adds a dedicated `TechSelectionAgent` to make the business workflow clearer.
+方案取舍：项目保留 HelloAgents 能力，同时新增 `TechSelectionAgent`，让业务流程更清晰地面向技术选型场景。
 
-### Search-Augmented Evaluation
+### 搜索增强评估
 
-Chosen to reduce hallucination risk and make recommendations traceable.
+选择原因：技术选型需要引用外部资料，降低纯模型生成带来的幻觉风险。
 
-Trade-off: search quality depends on backend availability and API keys. Tavily is recommended for stable demos; DuckDuckGo is convenient but may be less reliable.
+方案取舍：搜索质量依赖后端和 API Key。演示场景推荐使用 Tavily；DuckDuckGo 使用方便，但稳定性可能较弱。
 
-### Lightweight Markdown Rendering
+### 轻量 Markdown 渲染
 
-Chosen to avoid adding frontend dependencies in the MVP.
+选择原因：MVP 阶段避免引入额外前端依赖。
 
-Trade-off: the local renderer supports common headings, lists, links, bold text, and tables, but it is not a full Markdown parser. A production version should use a mature Markdown renderer with sanitization.
+方案取舍：当前本地渲染器支持标题、列表、链接、加粗和表格，但不是完整 Markdown 解析器。生产版本建议接入成熟 Markdown 渲染库并加入安全清洗。
 
-## Local Development
+## 本地运行
 
-### Requirements
+### 环境要求
 
 - Python 3.10+
 - Node.js 16+
 - npm 8+
-- A usable OpenAI-compatible LLM endpoint, Ollama, or LMStudio
-- Optional: Tavily / Perplexity / Searxng for better search
+- 可用的 OpenAI 兼容 LLM 接口、Ollama 或 LMStudio
+- 可选：Tavily / Perplexity / Searxng，用于更稳定的联网检索
 
-### Backend Setup
+### 后端启动
 
 ```powershell
 cd E:\agentProjects\hello-agents\code\chapter14\helloagents-deepresearch\backend
@@ -172,9 +176,9 @@ pip install -e .
 Copy-Item .env.example .env
 ```
 
-Edit `backend/.env`.
+编辑 `backend/.env`。
 
-OpenAI-compatible example:
+OpenAI 兼容接口示例：
 
 ```env
 SEARCH_API=duckduckgo
@@ -193,7 +197,7 @@ ENABLE_NOTES=True
 NOTES_WORKSPACE=./notes
 ```
 
-Ollama example:
+Ollama 示例：
 
 ```env
 SEARCH_API=duckduckgo
@@ -211,31 +215,31 @@ ENABLE_NOTES=True
 NOTES_WORKSPACE=./notes
 ```
 
-Start backend:
+启动后端：
 
 ```powershell
 python src\main.py
 ```
 
-Health check:
+健康检查：
 
 ```text
 http://localhost:8000/healthz
 ```
 
-Main streaming endpoint:
+主接口：
 
 ```text
 POST http://localhost:8000/decision/stream
 ```
 
-Legacy research endpoint is still available:
+兼容保留的旧接口：
 
 ```text
 POST http://localhost:8000/research/stream
 ```
 
-### Frontend Setup
+### 前端启动
 
 ```powershell
 cd E:\agentProjects\hello-agents\code\chapter14\helloagents-deepresearch\frontend
@@ -243,68 +247,68 @@ npm install
 npm run dev
 ```
 
-Open:
+访问：
 
 ```text
 http://localhost:5174
 ```
 
-Optional frontend environment:
+可选前端环境变量：
 
 ```env
 VITE_API_BASE_URL=http://localhost:8000
 ```
 
-## Validation
+## 验证命令
 
-Backend syntax check:
+后端语法检查：
 
 ```powershell
 cd E:\agentProjects\hello-agents\code\chapter14\helloagents-deepresearch\backend
 .\.venv\Scripts\python.exe -m py_compile src\models.py src\main.py src\tech_selection_agent.py src\services\candidate_discovery.py src\services\dimension_planner.py src\services\matrix_builder.py src\services\exporter.py src\services\search.py
 ```
 
-Frontend build:
+前端构建：
 
 ```powershell
 cd E:\agentProjects\hello-agents\code\chapter14\helloagents-deepresearch\frontend
 npm run build
 ```
 
-## Key Pull Requests
+## 关键 PR
 
-This repository currently tracks local MVP work. Add PR links after pushing to GitHub:
+当前项目仍处于本地 MVP 阶段，推送到 GitHub 后建议补充以下 PR 链接：
 
-- PR 1: `TODO: Introduce StackPilot AI decision workflow`
-- PR 2: `TODO: Rebuild frontend as technology selection workspace`
-- PR 3: `TODO: Add Docker deployment and public demo`
-- PR 4: `TODO: Add report history and persistence`
+- PR 1：`TODO: Introduce StackPilot AI decision workflow`
+- PR 2：`TODO: Rebuild frontend as technology selection workspace`
+- PR 3：`TODO: Add Docker deployment and public demo`
+- PR 4：`TODO: Add report history and persistence`
 
-## Current Limitations
+## 当前限制
 
-- The decision workflow runs inside a single HTTP streaming request.
-- No user accounts, team workspace, or permission model yet.
-- No persistent database for decision history; reports can be exported as Markdown.
-- Search quality depends on the configured backend and network availability.
-- Ratings are coarse labels rather than statistically validated scores.
-- The Markdown renderer is intentionally lightweight and not a complete Markdown engine.
-- No automated browser visual regression tests yet.
-- No deployed demo URL or recorded demo video has been added yet.
+- 决策工作流运行在一次 HTTP 流式请求中，尚未引入后台任务队列。
+- 暂无用户系统、团队空间和权限模型。
+- 暂无数据库持久化历史记录，报告目前以 Markdown 导出为主。
+- 搜索质量依赖配置的搜索后端和网络状态。
+- 评级是粗粒度标签，不是严格统计评分。
+- Markdown 渲染器是轻量实现，不是完整 Markdown 引擎。
+- 尚未加入自动化浏览器视觉回归测试。
+- README 中的 Demo 地址、演示视频和截图仍待补充。
 
-## Roadmap
+## 后续计划
 
-- Add Docker Compose deployment for frontend and backend.
-- Deploy a public demo and add screenshots/video to this README.
-- Persist selection history and generated reports.
-- Split the frontend into focused components.
-- Add source credibility labels such as official docs, GitHub, blog, community, and benchmark.
-- Add ADR export format.
-- Add background job execution for long-running decisions.
-- Add retry, timeout, and partial-result handling.
-- Add Playwright checks for desktop and mobile UI.
-- Add GitHub Actions for build and lint validation.
+- 增加 Docker Compose 部署。
+- 部署公开 Demo，并补充截图和演示视频。
+- 增加选型历史记录和报告归档。
+- 将前端拆分为独立组件。
+- 增加来源可信度标签，例如官方文档、GitHub、技术博客、社区讨论、Benchmark。
+- 增加 ADR 导出格式。
+- 引入后台任务执行，支持长耗时选型任务恢复。
+- 增加重试、超时和部分结果返回机制。
+- 增加 Playwright 桌面端和移动端 UI 检查。
+- 增加 GitHub Actions 构建与检查流程。
 
-## Project Structure
+## 项目结构
 
 ```text
 helloagents-deepresearch/
